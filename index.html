@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0A0A0F;
+  --surface: #111118;
+  --surface2: #18181F;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --text: #F0EFF8;
+  --text-muted: #888799;
+  --text-faint: #44435A;
+  --accent: #7C6FFF;
+  --accent2: #C084FC;
+  --grad: linear-gradient(135deg, #7C6FFF, #C084FC);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  padding: 3.5rem 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: -80px;
+  width: 500px; height: 350px;
+  background: radial-gradient(ellipse, rgba(124,111,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow span { display: block; width: 24px; height: 1px; background: var(--accent); }
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(124,111,255,0.12);
+  border: 1px solid rgba(124,111,255,0.3);
+  color: #A89CFF;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.header-date { font-size: 12px; color: var(--text-faint); font-weight: 300; }
+
+.page-body { padding: 4rem 5rem; display: flex; flex-direction: column; gap: 4rem; }
+
+.overview-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 1.4rem;
+}
+
+.overview-text {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #C8C7DC;
+  margin-bottom: 1.4rem;
+}
+
+.overview-text strong { font-weight: 500; color: var(--text); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.stat { background: var(--surface); padding: 1.4rem 1.5rem; }
+
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.stat-lbl { font-size: 11px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.03em; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 5px 13px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tag:hover { border-color: var(--border-hover); color: var(--text); }
+
+.divider { height: 1px; background: var(--border); }
+
+.collabs-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.collabs-count {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+.collabs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.collab-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.8rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+  cursor: default;
+}
+
+.collab-card:hover {
+  border-color: rgba(124,111,255,0.35);
+  background: var(--surface2);
+  transform: translateY(-3px);
+}
+
+.collab-card:hover .avatar-ring {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--accent);
+}
+
+.avatar-ring {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--border);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: box-shadow 0.25s;
+  margin-bottom: 1.1rem;
+}
+
+.avatar-ring img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.collab-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 7px;
+  letter-spacing: -0.01em;
+}
+
+.collab-id {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  background: rgba(124,111,255,0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+
+.collab-email {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+@media (max-width: 960px) {
+  header { padding: 2rem 1.5rem; }
+  .page-body { padding: 2.5rem 1.5rem; }
+  .overview-block { grid-template-columns: 1fr; }
+  .collabs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .collabs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="eyebrow"><span></span>Project Overview</div>
+    <h1>Atlas Design System</h1>
+  </div>
+  <div class="header-right">
+    <div class="badge"><span class="badge-dot"></span>Active</div>
+    <div class="header-date">Started January 2025</div>
+  </div>
+</header>
+
+<div class="page-body">
+
+  <div class="overview-block">
+    <div>
+      <div class="section-title">About this project</div>
+      <p class="overview-text">Atlas is a <strong>unified design language</strong> built to bring consistency and velocity across all product surfaces. It provides a shared foundation of tokens, components, and guidelines that allow teams to move faster without sacrificing quality.</p>
+      <p class="overview-text">Every component meets <strong>WCAG 2.1 AA</strong> accessibility standards and has been tested across assistive technologies. Atlas currently powers three flagship products with four more in adoption.</p>
+      <div class="tags">
+        <span class="tag">Design Systems</span>
+        <span class="tag">React</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Accessibility</span>
+        <span class="tag">Tokens</span>
+        <span class="tag">Documentation</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-title">At a glance</div>
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-val">84</div><div class="stat-lbl">Components</div></div>
+        <div class="stat"><div class="stat-val">7</div><div class="stat-lbl">Products</div></div>
+        <div class="stat"><div class="stat-val">Q3</div><div class="stat-lbl">Release</div></div>
+        <div class="stat"><div class="stat-val">12</div><div class="stat-lbl">Sprints</div></div>
+        <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">Beta Users</div></div>
+        <div class="stat"><div class="stat-val">99%</div><div class="stat-lbl">A11y Score</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div>
+    <div class="collabs-header">
+      <div class="section-title" style="margin-bottom:0;">Collaborators</div>
+      <div class="collabs-count">9 members</div>
+    </div>
+    <div class="collabs-grid">
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="img\thomascrossman.JPG" alt="Thomas Crossman"></div>
+        <div class="collab-name">Thomas Crossman</div>
+        <div class="collab-id">101764303</div>
+        <div class="collab-email">crossmant1@udayton.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=James+Okafor&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="James Okafor"></div>
+        <div class="collab-name">James Okafor</div>
+        <div class="collab-id">STU-002</div>
+        <div class="collab-email">j.okafor@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Sofia+Reyes&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Sofia Reyes"></div>
+        <div class="collab-name">Sofia Reyes</div>
+        <div class="collab-id">STU-003</div>
+        <div class="collab-email">s.reyes@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Niko+Patel&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Niko Patel"></div>
+        <div class="collab-name">Niko Patel</div>
+        <div class="collab-id">STU-004</div>
+        <div class="collab-email">niko.patel@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Lena+Voss&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Lena Voss"></div>
+        <div class="collab-name">Lena Voss</div>
+        <div class="collab-id">STU-005</div>
+        <div class="collab-email">lena.voss@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Tariq+Hassan&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Tariq Hassan"></div>
+        <div class="collab-name">Tariq Hassan</div>
+        <div class="collab-id">STU-006</div>
+        <div class="collab-email">t.hassan@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Priya+Nair&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Priya Nair"></div>
+        <div class="collab-name">Priya Nair</div>
+        <div class="collab-id">STU-007</div>
+        <div class="collab-email">priya.nair@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Elias+Berg&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Elias Berg"></div>
+        <div class="collab-name">Elias Berg</div>
+        <div class="collab-id">STU-008</div>
+        <div class="collab-email">e.berg@university.edu</div>
+      </div>
+
+      <div class="collab-card">
+        <div class="avatar-ring"><img src="https://ui-avatars.com/api/?name=Yuna+Kim&size=176&background=2A1F6B&color=A89CFF&bold=true&font-size=0.38" alt="Yuna Kim"></div>
+        <div class="collab-name">Yuna Kim</div>
+        <div class="collab-id">STU-009</div>
+        <div class="collab-email">yuna.kim@university.edu</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
